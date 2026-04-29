@@ -159,4 +159,49 @@ class BTreeTest {
             assertFalse(tree.search(v), "Não deveria encontrar: " + v);
         }
     }
+
+    @Test
+    void testPreOrderSimples() {
+        BTree tree = new BTree(2);
+        tree.insert(10);
+        tree.insert(20);
+        tree.insert(5);
+
+        java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+        System.setOut(new java.io.PrintStream(out));
+        tree.preOrder(tree.root);
+        System.setOut(System.out);
+
+        assertEquals("5 10 20 ", out.toString());
+    }
+
+    @Test
+    void testInOrderProduzsOrdemCrescente() {
+        BTree tree = new BTree(2);
+        int[] valores = {10, 20, 5, 30, 15, 25, 35, 1, 7, 12};
+        for (int v : valores) tree.insert(v);
+
+        java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+        System.setOut(new java.io.PrintStream(out));
+        tree.inOrder(tree.root);
+        System.setOut(System.out);
+
+        // in-order numa BST/BTree sempre produz ordem crescente
+        assertEquals("1 5 7 10 12 15 20 25 30 35 ", out.toString());
+    }
+
+    @Test
+    void testPosOrderSimples() {
+        BTree tree = new BTree(2);
+        tree.insert(10);
+        tree.insert(20);
+        tree.insert(5);
+
+        java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+        System.setOut(new java.io.PrintStream(out));
+        tree.posOrder(tree.root);
+        System.setOut(System.out);
+
+        assertEquals("5 10 20 ", out.toString());
+    }
 }
