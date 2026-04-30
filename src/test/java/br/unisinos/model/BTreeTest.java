@@ -1,7 +1,14 @@
 package br.unisinos.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import br.unisinos.service.BTreeTraversal;
+
+import java.io.ByteArrayOutputStream;
 
 class BTreeTest {
 
@@ -167,9 +174,9 @@ class BTreeTest {
         tree.insert(20);
         tree.insert(5);
 
-        java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
-        tree.preOrder(tree.root);
+        BTreeTraversal.preOrder(tree.root);
         System.setOut(System.out);
 
         assertEquals("5 10 20 ", out.toString());
@@ -181,9 +188,9 @@ class BTreeTest {
         int[] valores = {10, 20, 5, 30, 15, 25, 35, 1, 7, 12};
         for (int v : valores) tree.insert(v);
 
-        java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
-        tree.inOrder(tree.root);
+        BTreeTraversal.inOrder(tree.root);
         System.setOut(System.out);
 
         // in-order numa BST/BTree sempre produz ordem crescente
@@ -197,9 +204,9 @@ class BTreeTest {
         tree.insert(20);
         tree.insert(5);
 
-        java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
-        tree.posOrder(tree.root);
+        BTreeTraversal.posOrder(tree.root);
         System.setOut(System.out);
 
         assertEquals("5 10 20 ", out.toString());

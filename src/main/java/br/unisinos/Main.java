@@ -1,5 +1,6 @@
 package br.unisinos;
 import br.unisinos.model.BTree;
+import br.unisinos.visualization.BTreeVisualization;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class Main {
         tree.insert(10);
         tree.insert(20);
         tree.insert(5);
-        salvarDot(tree.generateDot(), "dotFiles/Exemplo1.dot");
+        salvarDot(BTreeVisualization.generateDot(tree), "dotFiles/Exemplo1.dot");
     }
 
     // exemplo 2 — insercoes que causam split na raiz
@@ -32,7 +33,7 @@ public class Main {
         tree.insert(30);
         tree.insert(40);
         tree.insert(50);
-        salvarDot(tree.generateDot(), "dotFiles/Exemplo2.dot");
+        salvarDot(BTreeVisualization.generateDot(tree), "dotFiles/Exemplo2.dot");
     }
 
     // exemplo 3 — arvore maior com varios niveis
@@ -40,7 +41,7 @@ public class Main {
         BTree tree = new BTree(2);
         int[] valores = {10, 20, 5, 30, 15, 25, 35, 1, 7, 12};
         for (int v : valores) tree.insert(v);
-        salvarDot(tree.generateDot(), "dotFiles/Exemplo3.dot");
+        salvarDot(BTreeVisualization.generateDot(tree), "dotFiles/Exemplo3.dot");
     }
 
     // exemplo 4 — insercoes seguidas de remocoes em folha
@@ -53,7 +54,7 @@ public class Main {
         tree.insert(15);
         tree.remove(5);
         tree.remove(15);
-        salvarDot(tree.generateDot(), "dotFiles/Exemplo4.dot");
+        salvarDot(BTreeVisualization.generateDot(tree), "dotFiles/Exemplo4.dot");
     }
 
     // exemplo 5 — remocao de chave interna com merge
@@ -67,7 +68,7 @@ public class Main {
         tree.insert(25);
         tree.insert(35);
         tree.remove(20);
-        salvarDot(tree.generateDot(), "dotFiles/Exemplo5.dot");
+        salvarDot(BTreeVisualization.generateDot(tree), "dotFiles/Exemplo5.dot");
     }
 
     private static void salvarDot(String conteudo, String caminho) {
